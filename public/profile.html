@@ -26,24 +26,31 @@
             </button>
         </header>
 
-        <div class="for profile-card p-3 mt-md-0 mt-5">
-            <h3 id="profile-loader" class="display-4 text-center d-none">Loading...</h3>
+        <div class="for profile-card mt-md-0 mt-5">
+            <h3 id="profile-loader" class="display-4 p-4 text-center d-none">Loading...</h3>
             <div id="profile-container" class="align-items-center gap-4 my-1 d-none thiss">
-                <div class="item">
-                    <label>First Name</label>
-                    <h5>User's First Name</h5>
+                <div class="bg-black item text-light p-4 d-flex align-items-center justify-content-center my-3">
+                    <h5 class="display-5">Welcome</h5>
                 </div>
-                <div class="item">
-                    <label>Last Name</label>
-                    <h5>User's Last Name</h5>
+                <div class="d-flex flex-md-row flex-column align-items-center justify-content-between my-3 p-4 text-center">
+                    <div class="item">
+                        <label>First Name</label>
+                        <h5>User's First Name</h5>
+                    </div>
+                    <div class="item">
+                        <label>Last Name</label>
+                        <h5>User's Last Name</h5>
+                    </div>
                 </div>
-                <div class="item">
-                    <label>Email Address</label>
-                    <h5>User's email</h5>
-                </div>
-                <div class="item">
-                    <label>User Name</label>
-                    <h5>User's user name</h5>
+                <div class="d-flex flex-md-row flex-column align-items-center justify-content-between my-3 p-4 text-center">
+                    <div class="item">
+                        <label>Email Address</label>
+                        <h5>User's email</h5>
+                    </div>
+                    <div class="item">
+                        <label>User Name</label>
+                        <h5>User's user name</h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,10 +82,11 @@
                     }).showToast();
                     const { firstName, lastName, email, userName } = data.user;
                     const h5s = document.querySelectorAll(".item h5");
-                    h5s[0].textContent = firstName;
-                    h5s[1].textContent = lastName;
-                    h5s[2].textContent = email;
-                    h5s[3].textContent = userName;
+                    h5s[0].textContent = "Welcome " + userName;
+                    h5s[1].textContent = firstName;
+                    h5s[2].textContent = lastName;
+                    h5s[3].textContent = email;
+                    h5s[4].textContent = userName;
                 } else {
                     Toastify({
                         text: data.message || data.error || "Failed to verify token. Please login again.",

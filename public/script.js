@@ -163,9 +163,29 @@ const logOut = async () => {
     })
     .then(res => res.json())
     .then(() => {
-        window.location.href = "index.html";
+        Toastify({
+            text: result.message || "Logout successfully!",
+            duration: 4000,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "green",
+            close: true
+        }).showToast();
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 2000);
     })
     .catch(() => {
-        window.location.href = "index.html";
+        Toastify({
+            text: result.message || "Logout successfully!",
+            duration: 4000,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "green",
+            close: true
+        }).showToast();
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 2000);
     });
 }

@@ -69,18 +69,12 @@ form button.btn, form button.btn:hover{
     width: 75%;
 }
 
-.thiss{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+.profile-card .item{
+    width: 100% !important;
 }
 
 @media (max-width: 767px) {
     form.form, .form, .profile-card{
         min-width: 350px;
-    }
-
-    .thiss{
-        display: grid;
-        grid-template-columns: repeat(1, 1fr) !important;
     }
 }
