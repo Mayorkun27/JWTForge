@@ -27,7 +27,8 @@
         </header>
 
         <div class="for profile-card p-3 mt-md-0 mt-5">
-            <div class="align-items-center gap-4 my-1 thiss">
+            <h3 id="profile-loader" class="display-4 text-center d-none">Loading...</h3>
+            <div id="profile-container" class="align-items-center gap-4 my-1 d-none thiss">
                 <div class="item">
                     <label>First Name</label>
                     <h5>User's First Name</h5>
@@ -53,7 +54,11 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", async function () {
+            const profileLoader = document.getElementById("profile-loader");
+            const profileContainer = document.getElementById("profile-container");
             try {
+                profileLoader.classList.remove("d-none");
+                profileContainer.classList.add("d-none");
                 const res = await fetch("/api/v1/user/session", {
                     credentials: "include"
                 });
@@ -100,6 +105,11 @@
                 }).showToast();
                 setTimeout(() => {
                     window.location.href = "index.html";
+                }, 2000);
+            } finally {
+                setTimeout(() => {
+                    profileLoader.classList.add("d-none");
+                    profileContainer.classList.remove("d-none");
                 }, 2000);
             }
         });
