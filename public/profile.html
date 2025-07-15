@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWTForge | Profile</title>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/fontawesome/css/all.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+
+
+    <div class="container align-items-lg-center align-items-start justify-content-lg-center justify-content-start pt-md-0 pt-5">
+        <header class="fixed-top d-flex align-items-center justify-content-between px-4 py-3">
+            <h3 class="m-0 p-0">JWTForge</h3>
+            <button 
+                type="button"
+                class="btn d-flex align-items-center gap-1 rounded-0 p-0" 
+                style="font-size: 14px;"
+                onclick="logOut()"
+            >
+                <span class="">Logout</span>
+                <i class="fa fa-door-open"></i>
+            </button>
+        </header>
+
+        <div class="for profile-card p-3 mt-md-0 mt-5">
+            <div class="align-items-center gap-4 my-1 thiss">
+                <div class="item">
+                    <label>First Name</label>
+                    <h5>User's First Name</h5>
+                </div>
+                <div class="item">
+                    <label>Last Name</label>
+                    <h5>User's Last Name</h5>
+                </div>
+                <div class="item">
+                    <label>Email Address</label>
+                    <h5>User's email</h5>
+                </div>
+                <div class="item">
+                    <label>User Name</label>
+                    <h5>User's user name</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            try {
+                const res = await fetch("/api/v1/user/session", {
+                    credentials: "include"
+                });
+                const data = await res.json();
+
+                if (res.ok && data.user) {
+                    Toastify({
+                        text: data.message || "Profile fetched successfully!",
+                        duration: 4000,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "green",
+                        close: true
+                    }).showToast();
+                    const { firstName, lastName, email, userName } = data.user;
+                    const h5s = document.querySelectorAll(".item h5");
+                    h5s[0].textContent = firstName;
+                    h5s[1].textContent = lastName;
+                    h5s[2].textContent = email;
+                    h5s[3].textContent = userName;
+                } else {
+                    Toastify({
+                        text: data.message || data.error || "Failed to verify token. Please login again.",
+                        duration: 4000,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "red",
+                        close: true
+                    }).showToast();
+                    // Redirect to login if not authenticated
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 2000);
+                }
+            } catch (err) {
+                console.error(err);
+                Toastify({
+                    text: "An unexpected error occurred.",
+                    duration: 4000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "red",
+                    close: true
+                }).showToast();
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

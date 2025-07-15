@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWTForge | Login</title>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/fontawesome/css/all.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+
+
+    <div class="container">
+        <form action="/api/v1/user/login" method="post" class="text-center form" id="loginForm">
+            <h3 class="h4">Welcome Back</h3>
+            <div class="my-1">
+                <label for=""></label>
+                <input 
+                    type="text"
+                    name="userName"
+                    id="userName"
+                    placeholder="Enter your User Name"
+                    class="form-control input"
+                >
+            </div>
+            <div class="my-1">
+                <label for=""></label>
+                <div class="input d-flex align-items-center justify-content-between">
+                    <input 
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        class="form-control bg-transparent border-0 sub-input"
+                    >
+                    <i 
+                        class="fa fa-eye p-2"
+                        id="visibilityToggler"
+                        onclick="togglePasswordVisibility('password', 'visibilityToggler')"
+                    ></i>
+                </div>
+            </div>
+
+            <button 
+                type="submit" 
+                class="btn"
+                id="loginButton"
+            >Login</button>
+
+            <p style="font-size: 12px;">New to JWTForge? <a href="register.html">Click here to register</a></p>
+        </form>
+    </div>
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWTForge | Register</title>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/fontawesome/css/all.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+
+
+    <div class="container">
+        <form action="/api/v1/user/register" method="post" class="text-center form" id="registerForm">
+            <h3 class="h4">Create an Account</h3>
+            <div class="d-flex flex-md-row flex-column align-items-center gap-4 my-1">
+                <div class="w-100">
+                    <label for=""></label>
+                    <input 
+                        type="text"
+                        name="firstName"
+                        id="firstName"
+                        placeholder="Enter your First Name"
+                        required
+                        class="form-control input"
+                    >
+                </div>
+                <div class="w-100">
+                    <label for=""></label>
+                    <input 
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        placeholder="Enter your Last Name"
+                        required
+                        class="form-control input"
+                    >
+                </div>
+            </div>
+            <div class="d-flex flex-md-row flex-column align-items-center gap-4 my-1">
+                <div class="w-100">
+                    <label for=""></label>
+                    <input 
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                        class="form-control input"
+                    >
+                </div>
+                <div class="w-100">
+                    <label for=""></label>
+                    <input 
+                        type="text"
+                        name="userName"
+                        id="userName"
+                        placeholder="Enter your User Name"
+                        required
+                        class="form-control input"
+                    >
+                </div>
+            </div>
+            <div class="d-flex flex-md-row flex-column align-items-center gap-4 my-1">
+                <div class="w-100">
+                    <label for=""></label>
+                    <div class="input d-flex align-items-center justify-content-between">
+                        <input 
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required
+                            class="form-control bg-transparent border-0 sub-input"
+                        >
+                        <i 
+                            class="fa fa-eye p-2"
+                            id="visibilityToggler"
+                            onclick="togglePasswordVisibility('password', 'visibilityToggler')"
+                        ></i>
+                    </div>
+                </div>
+                <div class="w-100">
+                    <label for=""></label>
+                    <div class="input d-flex align-items-center justify-content-between">
+                        <input 
+                            type="password"
+                            name="confirmPassword"
+                            id="confirmPassword"
+                            placeholder="Confirm password"
+                            required
+                            class="form-control bg-transparent border-0 sub-input"
+                        >
+                        <i 
+                            class="fa fa-eye p-2"
+                            id="visibilityToggler2"
+                            onclick="togglePasswordVisibility('confirmPassword', 'visibilityToggler2')"
+                        ></i>
+                    </div>
+                </div>
+            </div>
+
+            <button 
+                type="submit" 
+                class="btn"
+                id="registerButton"    
+            >Register</button>
+
+            <p style="font-size: 12px;">Already have an account? <a href="index.html">Click here to login</a></p>
+        </form>
+    </div>
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
