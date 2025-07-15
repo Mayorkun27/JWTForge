@@ -164,7 +164,7 @@ const logOut = async () => {
     .then(res => res.json())
     .then(() => {
         Toastify({
-            text: result.message || "Logout successfully!",
+            text: "Logout successfully!",
             duration: 4000,
             gravity: "top",
             position: "center",
@@ -177,7 +177,7 @@ const logOut = async () => {
     })
     .catch(() => {
         Toastify({
-            text: result.message || "Logout successfully!",
+            text: "Logout successfully!",
             duration: 4000,
             gravity: "top",
             position: "center",
