@@ -1,126 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JWTForge | Profile</title>
-    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="resources/fontawesome/css/all.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="resources/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+  </head>
+  <body>
+    <div
+      class="container align-items-center align-items-start justify-content-center justify-content-start pt-md-0 pt-5"
+    >
+      <header
+        class="fixed-top d-flex align-items-center justify-content-between px-4 py-3"
+      >
+        <h3 class="m-0 p-0 h5">JWTForge</h3>
+        <button
+          type="button"
+          class="btn logout-btn d-flex align-items-center justify-content-center gap-1 p-0"
+          style="font-size: 14px"
+          onclick="logOut()"
+        >
+          <span class="">Logout</span>
+          <i class="fa fa-door-open"></i>
+        </button>
+      </header>
 
-
-    <div class="container align-items-lg-center align-items-start justify-content-lg-center justify-content-start pt-md-0 pt-5">
-        <header class="fixed-top d-flex align-items-center justify-content-between px-4 py-3">
-            <h3 class="m-0 p-0">JWTForge</h3>
-            <button 
-                type="button"
-                class="btn d-flex align-items-center gap-1 rounded-0 p-0" 
-                style="font-size: 14px;"
-                onclick="logOut()"
+      <div class="for profile-card mt-md-0 mt-5">
+        <h3 id="profile-loader" class="display-4 p-4 text-center d-none">
+          Loading...
+        </h3>
+        <div id="profile-container" class="row my-1 d-none p-4 thiss">
+          <div
+            hidden
+            class="bg-black item text-light p-4 d-none align-items-center justify-content-center my-3"
+          >
+            <h5 class="display-5">Welcome</h5>
+          </div>
+          <div class="col-lg-4">
+            <div
+              class="initials mx-auto d-flex align-items-center justify-content-center"
             >
-                <span class="">Logout</span>
-                <i class="fa fa-door-open"></i>
-            </button>
-        </header>
-
-        <div class="for profile-card mt-md-0 mt-5">
-            <h3 id="profile-loader" class="display-4 p-4 text-center d-none">Loading...</h3>
-            <div id="profile-container" class="align-items-center gap-4 my-1 d-none thiss">
-                <div class="bg-black item text-light p-4 d-flex align-items-center justify-content-center my-3">
-                    <h5 class="display-5">Welcome</h5>
-                </div>
-                <div class="d-flex flex-md-row flex-column align-items-center justify-content-between my-3 p-4 text-center">
-                    <div class="item">
-                        <label>First Name</label>
-                        <h5>User's First Name</h5>
-                    </div>
-                    <div class="item">
-                        <label>Last Name</label>
-                        <h5>User's Last Name</h5>
-                    </div>
-                </div>
-                <div class="d-flex flex-md-row flex-column align-items-center justify-content-between my-3 p-4 text-center">
-                    <div class="item">
-                        <label>Email Address</label>
-                        <h5>User's email</h5>
-                    </div>
-                    <div class="item">
-                        <label>User Name</label>
-                        <h5>User's user name</h5>
-                    </div>
-                </div>
+              <h4 class="display-1 fw-bold">User Initials</h4>
             </div>
+          </div>
+          <div class="col-lg-8 my-3">
+            <div
+              class="d-flex flex-md-row flex-column gap-md-0 gap-4 align-items-center justify-content-between p-4 text-center"
+            >
+              <div class="item text-lg-start">
+                <label>First Name</label>
+                <h5>User's First Name</h5>
+              </div>
+              <div class="item text-lg-start">
+                <label>Last Name</label>
+                <h5>User's Last Name</h5>
+              </div>
+            </div>
+            <div
+              class="d-flex flex-md-row flex-column gap-md-0 gap-4 align-items-center justify-content-between p-4 text-center"
+            >
+              <div class="item text-lg-start">
+                <label>Email Address</label>
+                <h5>User's email</h5>
+              </div>
+              <div class="item text-lg-start">
+                <label>User Name</label>
+                <h5>User's user name</h5>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
     <script src="script.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", async function () {
-            const profileLoader = document.getElementById("profile-loader");
-            const profileContainer = document.getElementById("profile-container");
-            try {
-                profileLoader.classList.remove("d-none");
-                profileContainer.classList.add("d-none");
-                const res = await fetch("/api/v1/user/session", {
-                    credentials: "include"
-                });
-                const data = await res.json();
+      document.addEventListener("DOMContentLoaded", async function () {
+        const profileLoader = document.getElementById("profile-loader");
+        const profileContainer = document.getElementById("profile-container");
+        try {
+          profileLoader.classList.remove("d-none");
+          profileContainer.classList.add("d-none");
+          const res = await fetch("/api/v1/user/session", {
+            credentials: "include",
+          });
+          const data = await res.json();
 
-                if (res.ok && data.user) {
-                    Toastify({
-                        text: data.message || "Profile fetched successfully!",
-                        duration: 4000,
-                        gravity: "top",
-                        position: "center",
-                        backgroundColor: "green",
-                        close: true
-                    }).showToast();
-                    const { firstName, lastName, email, userName } = data.user;
-                    const h5s = document.querySelectorAll(".item h5");
-                    h5s[0].textContent = "Welcome " + userName;
-                    h5s[1].textContent = firstName;
-                    h5s[2].textContent = lastName;
-                    h5s[3].textContent = email;
-                    h5s[4].textContent = userName;
-                } else {
-                    Toastify({
-                        text: data.message || data.error || "Failed to verify token. Please login again.",
-                        duration: 4000,
-                        gravity: "top",
-                        position: "center",
-                        backgroundColor: "red",
-                        close: true
-                    }).showToast();
-                    // Redirect to login if not authenticated
-                    setTimeout(() => {
-                        window.location.href = "index.html";
-                    }, 2000);
-                }
-            } catch (err) {
-                console.error(err);
-                Toastify({
-                    text: "An unexpected error occurred.",
-                    duration: 4000,
-                    gravity: "top",
-                    position: "center",
-                    backgroundColor: "red",
-                    close: true
-                }).showToast();
-                setTimeout(() => {
-                    window.location.href = "index.html";
-                }, 2000);
-            } finally {
-                setTimeout(() => {
-                    profileLoader.classList.add("d-none");
-                    profileContainer.classList.remove("d-none");
-                }, 2000);
-            }
-        });
+          if (res.ok && data.user) {
+            Toastify({
+              text: data.message || "Profile fetched successfully!",
+              duration: 4000,
+              gravity: "top",
+              position: "center",
+              backgroundColor: "green",
+              close: true,
+            }).showToast();
+            const { firstName, lastName, email, userName } = data.user;
+            const h5s = document.querySelectorAll(".item h5");
+            const h4 = document.querySelector(".initials h4");
+            h4.innerHTML = `${firstName.split("")[0]}${lastName.split("")[0]}`;
+            h5s[0].textContent = "Welcome " + userName;
+            h5s[1].textContent = firstName;
+            h5s[2].textContent = lastName;
+            h5s[3].textContent = email;
+            h5s[4].textContent = userName;
+          } else {
+            Toastify({
+              text:
+                data.message ||
+                data.error ||
+                "Failed to verify token. Please login again.",
+              duration: 4000,
+              gravity: "top",
+              position: "center",
+              backgroundColor: "red",
+              close: true,
+            }).showToast();
+            // Redirect to login if not authenticated
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 2000);
+          }
+        } catch (err) {
+          console.error(err);
+          Toastify({
+            text: "An unexpected error occurred.",
+            duration: 4000,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "red",
+            close: true,
+          }).showToast();
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 2000);
+        } finally {
+          setTimeout(() => {
+            profileLoader.classList.add("d-none");
+            profileContainer.classList.remove("d-none");
+          }, 2000);
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

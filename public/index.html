@@ -12,9 +12,15 @@
 <body>
 
 
-    <div class="container">
+    <div class="container p-0">
+        <div class="side-image d-flex flex-column align-items-center justify-content-center text-light">
+            <small class="labeled">Login</small>
+            <h1 class="m-0 p-0">JWTForge</h1>
+            <p class="m-0 p-0">Secure authentication and verification for you!</p>
+        </div>
         <form action="/api/v1/user/login" method="post" class="text-center form" id="loginForm">
-            <h3 class="h4">Welcome Back</h3>
+            <h1 class="m-0 p-0 h6 d-md-none d-block">JWTForge</h1>
+            <h3 class="h4 display-6 fw-bold">Welcome Back</h3>
             <div class="my-1">
                 <label for=""></label>
                 <input 
